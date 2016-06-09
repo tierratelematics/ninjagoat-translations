@@ -1,4 +1,2 @@
 /// <reference path="../typings/index.d.ts" />
-import TranslationsModule from "./TranslationsModule";
-
-export {ProjectionsModule}
+export {default as TranslationsModule} from "./TranslationsModule";
