@@ -16,7 +16,9 @@ class TranslationsManager implements ITranslationsManager {
     }
 
     load():IPromise<Dictionary<string>> {
-        return this.languageRetriever.retrieve().then(language => this.translationsLoader.load(language));
+        return this.languageRetriever.retrieve()
+            .then(language => this.translationsLoader.load(language))
+            .then(labels => this.labels = labels);
     }
 
     translate(key:string, fallback:string):string {
