@@ -1,12 +1,16 @@
 import {Application} from "ninjagoat";
 import * as React from "react";
-import {IntlProvider} from "react-intl";
+import LocalizedComponent from "./LocalizedComponent";
+import ITranslationsManager from "./ITranslationsManager";
 
 class LocalizedApplication extends Application {
 
     protected rootComponent():React.ReactElement<any> {
-        let superComponent = super.rootComponent();
-        return <IntlProvider locale="en">{superComponent}</IntlProvider>;
+        let superComponent = super.rootComponent(),
+            translationsManager = this.kernel.get<ITranslationsManager>("ITranslationsManager");
+        return (
+            <LocalizedComponent translationsManager={translationsManager}> { superComponent } </LocalizedComponent>
+        );
     }
 }
 

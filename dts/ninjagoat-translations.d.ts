@@ -5,8 +5,19 @@ import {Dictionary} from "ninjagoat";
 import {IHttpClient} from "ninjagoat";
 import {Application} from "ninjagoat";
 import * as React from "react";
+import {IViewModelRegistry} from "ninjagoat";
+import {IKernelModule} from "inversify";
+import {IServiceLocator} from "ninjagoat";
+import {IModule} from "ninjagoat";
 
 declare module NinjagoatTranslations {
+
+    export class TranslationsModule implements IModule {
+
+        modules:IKernelModule;
+
+        register(registry:IViewModelRegistry, serviceLocator?:IServiceLocator, overrides?:any):void;
+    }
 
     export interface ILanguageRetriever {
         retrieve():IPromise<string>;

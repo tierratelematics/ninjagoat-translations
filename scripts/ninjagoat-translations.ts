@@ -2,6 +2,7 @@
 export {default as TranslationsModule} from "./TranslationsModule";
 export {default as TranslationsManager} from "./TranslationsManager";
 export {default as TranslationsLoader} from "./retrievers/TranslationsLoader";
+export {default as LocalizedApplication} from "./LocalizedApplication";
 export {FormattedDate} from "react-intl";
 export {FormattedTime} from "react-intl";
 export {FormattedRelative} from "react-intl";
