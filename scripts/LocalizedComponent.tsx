@@ -2,7 +2,6 @@ import * as React from "react";
 import ITranslationsManager from "./ITranslationsManager";
 import {Dictionary} from "ninjagoat";
 import {IntlProvider} from "react-intl";
-import * as _ from "lodash";
 
 class LocalizedComponent extends React.Component<{ translationsManager:ITranslationsManager }, { translations:Dictionary<string> }> {
 
@@ -19,10 +18,10 @@ class LocalizedComponent extends React.Component<{ translationsManager:ITranslat
 
     render() {
         if (this.state.translations) {
-            console.log(this.props.children[1] instanceof React.ReactNode);
+            let child = React.Children.toArray(this.props.children)[1];
             return (
                 <IntlProvider locale="en" messages={this.state.translations}>
-                    { React.Children.only(this.props.children)}
+                    { child }
                 </IntlProvider>
             );
         }
