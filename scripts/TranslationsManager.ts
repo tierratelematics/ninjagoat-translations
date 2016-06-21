@@ -8,21 +8,28 @@ import {Dictionary} from "ninjagoat";
 @injectable()
 class TranslationsManager implements ITranslationsManager {
 
-    private labels:Dictionary<string> = {};
+    private translations:Dictionary<string> = {};
+    private language:string = null;
 
     constructor(@inject("ILanguageRetriever") private languageRetriever:ILanguageRetriever,
                 @inject("ITranslationsLoader") private translationsLoader:ITranslationsLoader) {
 
     }
 
-    load():IPromise<Dictionary<string>> {
+    load():IPromise<{ language:string; translations:Dictionary<string> }> {
         return this.languageRetriever.retrieve()
-            .then(language => this.translationsLoader.load(language))
-            .then(labels => this.labels = labels);
+            .then(language => {
+                this.language = language;
+                return this.translationsLoader.load(language);
+            })
+            .then(labels => this.translations = labels)
+            .then(() => {
+                return {language: this.language, translations: this.translations}
+            });
     }
 
     translate(key:string, fallback:string):string {
-        return this.labels[key] || fallback;
+        return this.translations[key] || fallback;
     }
 
 }

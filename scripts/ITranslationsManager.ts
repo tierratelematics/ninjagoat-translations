@@ -3,7 +3,7 @@ import {Dictionary} from "ninjagoat";
 
 interface ITranslationsManager {
     translate(key:string, fallback:string):string;
-    load():IPromise<Dictionary<string>>;
+    load():IPromise<{ language:string; translations:Dictionary<string> }>;
 }
 
 export default ITranslationsManager
