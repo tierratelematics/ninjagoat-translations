@@ -12,9 +12,9 @@ import TranslationsManager from "./TranslationsManager";
 class TranslationsModule implements IModule {
 
     modules:IKernelModule = (kernel:IKernel) => {
-        kernel.bind<ILanguageRetriever>("ILanguageRetriever").to(BrowserLanguageRetriever);
-        kernel.bind<ITranslationsLoader>("ITranslationsLoader").to(TranslationsLoader);
-        kernel.bind<ITranslationsManager>("ITranslationsManager").to(TranslationsManager);
+        kernel.bind<ILanguageRetriever>("ILanguageRetriever").to(BrowserLanguageRetriever).inSingletonScope();
+        kernel.bind<ITranslationsLoader>("ITranslationsLoader").to(TranslationsLoader).inSingletonScope();
+        kernel.bind<ITranslationsManager>("ITranslationsManager").to(TranslationsManager).inSingletonScope();
     };
 
     register(registry:IViewModelRegistry, serviceLocator?:IServiceLocator, overrides?:any):void {
