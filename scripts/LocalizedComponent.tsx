@@ -21,7 +21,7 @@ class LocalizedComponent extends React.Component<{ translationsManager:ITranslat
         if (this.state.translations) {
             let child = React.Children.toArray(this.props.children)[1];
             return (
-                <IntlProvider locale={this.state.language} messages={this.state.translations}>
+                <IntlProvider locale="en" messages={this.state.translations}>
                     { child }
                 </IntlProvider>
             );
