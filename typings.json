@@ -6,9 +6,11 @@
         "bluebird": "registry:dt/bluebird#2.0.0+20160319051630",
         "inversify-dts": "npm:inversify-dts/inversify/inversify.d.ts",
         "lodash": "registry:dt/lodash#3.10.0+20160330154726",
+        "history": "file:dts/history.d.ts",
         "node": "registry:dt/node#4.0.0+20160505172921",
         "react": "registry:dt/react#0.14.0+20160423065914",
         "react-intl": "registry:dt/react-intl#2.0.0+20160412155000",
+        "react-router": "registry:dt/react-router#2.0.0+20160621215300",
         "reflect-metadata": "npm:reflect-metadata/reflect-metadata.d.ts",
         "rx": "npm:rx/ts/rx.all.d.ts"
     },
