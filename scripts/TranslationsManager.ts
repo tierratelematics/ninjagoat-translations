@@ -28,7 +28,7 @@ class TranslationsManager implements ITranslationsManager {
             });
     }
 
-    translate(key:string, fallback:string):string {
+    translate(key:string, fallback?:string):string {
         return this.translations[key] || fallback;
     }
 
