@@ -32,7 +32,7 @@ declare module NinjagoatTranslations {
     }
 
     export interface ITranslationsManager {
-        translate(key:string, fallback:string):string;
+        translate(key:string, fallback?:string):string;
         load():IPromise<Dictionary<string>>;
     }
 
@@ -49,7 +49,7 @@ declare module NinjagoatTranslations {
 
         load():IPromise<Dictionary<string>>;
 
-        translate(key:string, fallback:string):string;
+        translate(key:string, fallback?:string):string;
     }
 
     export class LocalizedApplication extends Application {
