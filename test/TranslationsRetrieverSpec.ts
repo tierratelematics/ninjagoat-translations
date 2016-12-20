@@ -6,13 +6,12 @@ import MockHttpClient from "./fixtures/MockHttpClient";
 import ITranslationsLoader from "../scripts/retrievers/ITranslationsLoader";
 import TranslationsLoader from "../scripts/retrievers/TranslationsLoader";
 import {IHttpClient} from "ninjagoat";
-import SinonSpy = Sinon.SinonSpy;
 
 describe("Given a TranslationsLoader", () => {
 
     let subject:ITranslationsLoader,
         httpClient:IHttpClient,
-        httpSpy:SinonSpy;
+        httpSpy:sinon.SinonSpy;
 
     beforeEach(() => {
         httpClient = new MockHttpClient();
