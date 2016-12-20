@@ -7,7 +7,7 @@ class LocalizedApplication extends Application {
 
     protected rootComponent():React.ReactElement<any> {
         let superComponent = super.rootComponent(),
-            translationsManager = this.kernel.get<ITranslationsManager>("ITranslationsManager");
+            translationsManager = this.container.get<ITranslationsManager>("ITranslationsManager");
         return (
             <LocalizedComponent translationsManager={translationsManager}> { superComponent } </LocalizedComponent>
         );
