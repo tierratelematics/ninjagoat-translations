@@ -1,4 +1,3 @@
-/// <reference path="../typings/index.d.ts" />
 export {default as TranslationsModule} from "./TranslationsModule";
 export {default as TranslationsManager} from "./TranslationsManager";
 export {default as TranslationsLoader} from "./retrievers/TranslationsLoader";
