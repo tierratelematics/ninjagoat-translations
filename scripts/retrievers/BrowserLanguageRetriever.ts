@@ -7,8 +7,9 @@ import {injectable} from "inversify";
 class BrowserLanguageRetriever implements ILanguageRetriever {
 
     retrieve():IPromise<string> {
-        let preferredLanguage = (<any>window).navigator.languages ? (<any>window).navigator.languages[0] : null;
-        return Promise.resolve((preferredLanguage || window.navigator.userLanguage || window.navigator.language).slice(0, 2));
+        let anyWindow = <any>window;
+        let preferredLanguage = anyWindow.navigator.languages ? anyWindow.navigator.languages[0] : null;
+        return Promise.resolve((preferredLanguage || anyWindow.navigator.userLanguage || anyWindow.navigator.language).slice(0, 2));
     }
 
 }
