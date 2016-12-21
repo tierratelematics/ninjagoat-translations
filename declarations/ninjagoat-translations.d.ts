@@ -53,7 +53,7 @@ export class LocalizedApplication extends Application {
 
 }
 
-namespace IntlComponent {
+declare namespace IntlComponent {
     interface DateTimeFormatProps {
         /*
          * one of "best fit" (default) | "lookup"
@@ -104,7 +104,7 @@ namespace IntlComponent {
     }
 }
 
-namespace FormattedDate {
+declare namespace FormattedDate {
     export interface PropsBase extends IntlComponent.DateTimeFormatProps {
         format?: string;
     }
@@ -117,7 +117,7 @@ export class FormattedDate extends React.Component<FormattedDate.Props, any> {
 }
 
 
-namespace FormattedTime {
+declare namespace FormattedTime {
     export interface PropsBase extends IntlComponent.DateTimeFormatProps {
         format?: string;
     }
@@ -130,7 +130,7 @@ export class FormattedTime extends React.Component<FormattedTime.Props, any> {
 }
 
 
-namespace FormattedRelative {
+declare namespace FormattedRelative {
     export interface PropsBase {
         /*
          * one of "second", "minute", "hour", "day", "month" or "year"
@@ -153,7 +153,7 @@ export class FormattedRelative extends React.Component<FormattedRelative.Props, 
 }
 
 
-namespace FormattedMessage {
+declare namespace FormattedMessage {
     export interface MessageDescriptor {
         id: string;
         description?: string;
@@ -173,7 +173,7 @@ export class FormattedHTMLMessage extends React.Component<FormattedMessage.Props
 }
 
 
-namespace FormattedNumber {
+declare namespace FormattedNumber {
     export interface PropsBase {
         format?: string;
         /*
@@ -205,7 +205,7 @@ export class FormattedNumber extends React.Component<FormattedNumber.Props, any>
 }
 
 
-namespace FormattedPlural {
+declare namespace FormattedPlural {
     export interface PropsBase {
         /*
          * one of "cardinal" (default) | "ordinal"
