@@ -1,5 +1,4 @@
 import ITranslationsLoader from "./ITranslationsLoader";
-import {IPromise} from "rx";
 import {Dictionary} from "ninjagoat";
 import {injectable, inject} from "inversify";
 import {IHttpClient} from "ninjagoat";
@@ -13,8 +12,8 @@ class TranslationsLoader implements ITranslationsLoader {
 
     }
 
-    load(language:string):IPromise<Dictionary<string>> {
-        return this.httpClient
+    load(language:string):Promise<Dictionary<string>> {
+        return <Promise<Dictionary<string>>>this.httpClient
             .get(`${this.config.endpoint}/${language}`)
             .map(response => response.response)
             .toPromise();
