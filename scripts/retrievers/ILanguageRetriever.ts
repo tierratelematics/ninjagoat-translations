@@ -1,7 +1,5 @@
-import {IPromise} from "rx";
-
 interface ILanguageRetriever {
-    retrieve():IPromise<string>;
+    retrieve():Promise<string>;
 }
 
 export default ILanguageRetriever

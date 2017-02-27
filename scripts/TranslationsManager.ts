@@ -2,7 +2,6 @@ import ITranslationsManager from "./ITranslationsManager";
 import {injectable, inject} from "inversify";
 import ILanguageRetriever from "./retrievers/ILanguageRetriever";
 import ITranslationsLoader from "./retrievers/ITranslationsLoader";
-import {IPromise} from "rx";
 import {Dictionary} from "ninjagoat";
 
 @injectable()
@@ -16,7 +15,7 @@ class TranslationsManager implements ITranslationsManager {
 
     }
 
-    load():IPromise<{ language:string; translations:Dictionary<string> }> {
+    load():Promise<{ language:string; translations:Dictionary<string> }> {
         return this.languageRetriever.retrieve()
             .then(language => {
                 this.language = language;

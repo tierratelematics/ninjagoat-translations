@@ -1,4 +1,3 @@
-import {IPromise} from "rx";
 import {Dictionary} from "ninjagoat";
 import {IHttpClient} from "ninjagoat";
 import {Application} from "ninjagoat";
@@ -17,11 +16,11 @@ export class TranslationsModule implements IModule {
 }
 
 export interface ILanguageRetriever {
-    retrieve(): IPromise<string>;
+    retrieve(): Promise<string>;
 }
 
 export interface ITranslationsLoader {
-    load(language: string): IPromise<Dictionary<string>>;
+    load(language: string): Promise<Dictionary<string>>;
 }
 
 export interface ITranslationsConfig {
@@ -30,21 +29,21 @@ export interface ITranslationsConfig {
 
 export interface ITranslationsManager {
     translate(key: string, fallback?: string): string;
-    load(): IPromise<Dictionary<string>>;
+    load(): Promise<Dictionary<string>>;
 }
 
 export class TranslationsLoader implements ITranslationsLoader {
 
     constructor(httpClient: IHttpClient, config: ITranslationsConfig);
 
-    load(language: string): IPromise<Dictionary<string>>;
+    load(language: string): Promise<Dictionary<string>>;
 }
 
 export class TranslationsManager implements ITranslationsManager {
 
     constructor(languageRetriever: ILanguageRetriever, translationsLoader: ITranslationsLoader);
 
-    load(): IPromise<Dictionary<string>>;
+    load(): Promise<Dictionary<string>>;
 
     translate(key: string, fallback?: string): string;
 }
