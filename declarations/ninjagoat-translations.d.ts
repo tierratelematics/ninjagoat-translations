@@ -29,7 +29,7 @@ export interface ITranslationsConfig {
 
 export interface ITranslationsManager {
     translate(key: string, fallback?: string): string;
-    load(): Promise<Dictionary<string>>;
+    load(): Promise<{language: string; translations: Dictionary<string>}>;
 }
 
 export class TranslationsLoader implements ITranslationsLoader {
@@ -43,7 +43,7 @@ export class TranslationsManager implements ITranslationsManager {
 
     constructor(languageRetriever: ILanguageRetriever, translationsLoader: ITranslationsLoader);
 
-    load(): Promise<Dictionary<string>>;
+    load(): Promise<{language: string; translations: Dictionary<string>}>;
 
     translate(key: string, fallback?: string): string;
 }
