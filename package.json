@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "dependencies": {
     "@types/bluebird": "~3.0.36",
-    "@types/lodash": "~4.14.44",
+    "@types/lodash": "4.14.44",
     "@types/node": "~6.0.52",
     "@types/react": "~0.14.55",
     "@types/react-intl": "~2.1.0",
