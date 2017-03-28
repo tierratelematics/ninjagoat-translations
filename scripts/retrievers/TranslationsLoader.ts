@@ -14,7 +14,7 @@ class TranslationsLoader implements ITranslationsLoader {
 
     load(language:string):Promise<Dictionary<string>> {
         return <Promise<Dictionary<string>>>this.httpClient
-            .get(`${this.config.endpoint}/${language}`)
+            .get(`${this.config.endpoint}/${language}.json`)
             .map(response => response.response)
             .toPromise();
     }
