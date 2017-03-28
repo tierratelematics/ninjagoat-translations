@@ -26,7 +26,7 @@ describe("Given a TranslationsLoader", () => {
     context("when the labels for a specific language needs to be retrieved", () => {
         it("should retrieve the labels", () => {
             subject.load("en");
-            expect(httpSpy.calledWith("http://test/en")).to.be(true);
+            expect(httpSpy.calledWith("http://test/en.json")).to.be(true);
         });
     });
 });
