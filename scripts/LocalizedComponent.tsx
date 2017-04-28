@@ -1,11 +1,11 @@
 import * as React from "react";
-import ITranslationsManager from "./ITranslationsManager";
-import {Dictionary} from "ninjagoat";
-import {IntlProvider} from "react-intl";
+import ITranslationsRunner from "./ITranslationsRunner";
+import { Dictionary } from "ninjagoat";
+import { IntlProvider } from "react-intl";
 
-class LocalizedComponent extends React.Component<{ translationsManager:ITranslationsManager }, { language:string; translations:Dictionary<string> }> {
+class LocalizedComponent extends React.Component<{ translationsRunner: ITranslationsRunner }, { language: string; translations: Dictionary<string> }> {
 
-    constructor(props:{ translationsManager:ITranslationsManager, template:React.ReactElement<any>}) {
+    constructor(props: { translationsRunner: ITranslationsRunner }) {
         super(props);
         this.state = {
             translations: null,
@@ -14,7 +14,7 @@ class LocalizedComponent extends React.Component<{ translationsManager:ITranslat
     }
 
     componentWillMount() {
-        this.props.translationsManager.load().then(translations => this.setState(translations));
+        this.props.translationsRunner.run().subscribe(translations => this.setState(translations));
     }
 
     render() {
@@ -22,7 +22,7 @@ class LocalizedComponent extends React.Component<{ translationsManager:ITranslat
             let child = React.Children.toArray(this.props.children)[1];
             return (
                 <IntlProvider locale="en" messages={this.state.translations}>
-                    { child }
+                    {child}
                 </IntlProvider>
             );
         }
@@ -30,4 +30,4 @@ class LocalizedComponent extends React.Component<{ translationsManager:ITranslat
     }
 }
 
-export default LocalizedComponent
+export default LocalizedComponent;

@@ -1,17 +1,17 @@
-import {Application} from "ninjagoat";
+import { Application } from "ninjagoat";
 import * as React from "react";
 import LocalizedComponent from "./LocalizedComponent";
-import ITranslationsManager from "./ITranslationsManager";
+import ITranslationsRunner from "./ITranslationsRunner";
 
 class LocalizedApplication extends Application {
 
-    protected rootComponent():React.ReactElement<any> {
+    protected rootComponent(): React.ReactElement<any> {
         let superComponent = super.rootComponent(),
-            translationsManager = this.container.get<ITranslationsManager>("ITranslationsManager");
+            translationRunner = this.container.get<ITranslationsRunner>("ITranslationsRunner");
         return (
-            <LocalizedComponent translationsManager={translationsManager}> { superComponent } </LocalizedComponent>
+            <LocalizedComponent translationsRunner={translationRunner}> {superComponent} </LocalizedComponent>
         );
     }
 }
 
-export default LocalizedApplication
+export default LocalizedApplication;
