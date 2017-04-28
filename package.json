@@ -8,7 +8,7 @@
     "@types/react": "~0.14.55",
     "@types/react-intl": "~2.1.0",
     "bluebird": "~3.4.0",
-    "inversify": "~4.1.0",
+    "inversify": "~3.0.0",
     "lodash": "~4.10.0",
     "react-intl": "~2.1.2",
     "reflect-metadata": "0.1.8",
