@@ -1,7 +1,7 @@
 import {Dictionary} from "ninjagoat";
 
 interface ITranslationsLoader {
-    load(language:string):Promise<Dictionary<string>>;
+    load(language: string): Promise<Dictionary<string>>;
 }
 
-export default ITranslationsLoader
+export default ITranslationsLoader;

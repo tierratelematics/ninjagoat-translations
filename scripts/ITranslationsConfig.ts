@@ -1,5 +1,5 @@
 interface ITranslationsConfig {
-    endpoint:string;
+    endpoint: string;
 }
 
-export default ITranslationsConfig
+export default ITranslationsConfig;

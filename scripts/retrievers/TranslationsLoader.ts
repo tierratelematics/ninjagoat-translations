@@ -21,4 +21,4 @@ class TranslationsLoader implements ITranslationsLoader {
 
 }
 
-export default TranslationsLoader
+export default TranslationsLoader;
