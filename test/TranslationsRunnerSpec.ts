@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import * as Rx from "rx";
+import { Times } from "typemoq";
 import * as TypeMoq from "typemoq";
 import expect = require("expect.js");
 
@@ -23,23 +24,13 @@ describe("Given a TranslationsRunner", () => {
         subject = new TranslationsRunner(languageRetriever, translationsLoader.object);
     });
 
-    context("when the application boot", () => {
-        beforeEach(() => {
-            subject.run();
-        });
-
-        it("should listen the application language changes", () => {
-            expect(languageRetriever.listeners).to.be(1);
-        });
-    });
-
     context("when the application boots more then once", () => {
         it("should return the translations once", () => {
             subject.run().subscribe();
             subject.run().subscribe();
             languageRetriever.changeLanguage("en");
 
-            translationsLoader.verify(t => t.load("en"), TypeMoq.Times.once());
+            translationsLoader.verify(t => t.load("en"), Times.once());
         });
     });
 
@@ -53,16 +44,16 @@ describe("Given a TranslationsRunner", () => {
 
         it("should delegate to retrieve the language translations file", () => {
             languageRetriever.changeLanguage("en");
-            translationsLoader.verify(t => t.load("en"), TypeMoq.Times.once());
+            translationsLoader.verify(t => t.load("en"), Times.once());
         });
 
         it("should delegate to retrieve a new translations file if the language changes", () => {
             languageRetriever.changeLanguage("en");
-            translationsLoader.verify(t => t.load("en"), TypeMoq.Times.once());
+            translationsLoader.verify(t => t.load("en"), Times.once());
             languageRetriever.changeLanguage("it");
 
-            translationsLoader.verify(t => t.load("it"), TypeMoq.Times.once());
-            translationsLoader.verify(t => t.load(TypeMoq.It.isAnyString()), TypeMoq.Times.exactly(2));
+            translationsLoader.verify(t => t.load("it"), Times.once());
+            translationsLoader.verify(t => t.load(TypeMoq.It.isAnyString()), Times.exactly(2));
         });
 
         it("should notify with the language and the translations file", done => {
