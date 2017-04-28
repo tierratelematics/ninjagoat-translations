@@ -9,14 +9,13 @@ type TranslationsModel = { language: string; translations: Dictionary<string> }
 
 @injectable()
 class TranslationsRunner implements ITranslationsRunner {
-    private notifications: Rx.Observable<{ language: string, translations: Dictionary<string> }>;
+    private notifications: Rx.Observable<TranslationsModel>;
 
     constructor( @inject("ILanguageRetriever") private languageRetriever: ILanguageRetriever,
-        @inject("ITranslationsLoader") private translationsLoader: ITranslationsLoader) {
+                 @inject("ITranslationsLoader") private translationsLoader: ITranslationsLoader) {
         this.notifications = this.languageRetriever.retrieve()
             .flatMap(lang => this.translationsLoader.load(lang)
-                .then(translations => Promise.resolve({ language: lang, translations: translations })))
-            .asObservable()
+                .then(translations => ({ language: lang, translations: translations })))
             .shareReplay(1);
     }
 
