@@ -1,15 +1,15 @@
 import ILanguageRetriever from "./ILanguageRetriever";
-import {injectable} from "inversify";
+import { injectable } from "inversify";
+import { Observable } from "rx";
 
 @injectable()
 class BrowserLanguageRetriever implements ILanguageRetriever {
 
-    retrieve():Promise<string> {
+    retrieve(): Observable<string> {
         let anyWindow = <any>window;
         let preferredLanguage = anyWindow.navigator.languages ? anyWindow.navigator.languages[0] : null;
-        return Promise.resolve((preferredLanguage || anyWindow.navigator.userLanguage || anyWindow.navigator.language).slice(0, 2));
+        return Observable.just((preferredLanguage || anyWindow.navigator.userLanguage || anyWindow.navigator.language).slice(0, 2));
     }
-
 }
 
-export default BrowserLanguageRetriever
+export default BrowserLanguageRetriever;

@@ -1,5 +1,7 @@
+import { Observable } from "rx";
+
 interface ILanguageRetriever {
-    retrieve():Promise<string>;
+    retrieve(): Observable<string>;
 }
 
-export default ILanguageRetriever
+export default ILanguageRetriever;
