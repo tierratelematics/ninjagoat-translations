@@ -2,10 +2,14 @@ import * as React from "react";
 import ITranslationsRunner from "./ITranslationsRunner";
 import { Dictionary } from "ninjagoat";
 import { IntlProvider } from "react-intl";
+import { lazyInject } from "ninjagoat";
 
-class LocalizedComponent extends React.Component<{ translationsRunner: ITranslationsRunner }, { language: string; translations: Dictionary<string> }> {
+class LocalizedComponent extends React.Component<{}, { language: string; translations: Dictionary<string> }> {
 
-    constructor(props: { translationsRunner: ITranslationsRunner }) {
+    @lazyInject("ITranslationsRunner")
+    private translationsRunner: ITranslationsRunner;
+
+    constructor(props: {}) {
         super(props);
         this.state = {
             translations: null,
@@ -14,7 +18,7 @@ class LocalizedComponent extends React.Component<{ translationsRunner: ITranslat
     }
 
     componentWillMount() {
-        this.props.translationsRunner.run().subscribe(translations => this.setState(translations));
+        this.translationsRunner.run().subscribe(translations => this.setState(translations));
     }
 
     render() {
