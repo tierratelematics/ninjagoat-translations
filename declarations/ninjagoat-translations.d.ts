@@ -1,12 +1,12 @@
-import {Dictionary} from "ninjagoat";
-import {IHttpClient} from "ninjagoat";
-import {Application} from "ninjagoat";
+import { Dictionary } from "ninjagoat";
+import { IHttpClient } from "ninjagoat";
+import { Application } from "ninjagoat";
 import * as React from "react";
-import {IViewModelRegistry} from "ninjagoat";
-import {interfaces} from "inversify";
-import {IServiceLocator} from "ninjagoat";
-import {IModule} from "ninjagoat";
-
+import { IViewModelRegistry } from "ninjagoat";
+import { interfaces } from "inversify";
+import { IServiceLocator } from "ninjagoat";
+import { IModule } from "ninjagoat";
+import { Observable } from "rx";
 
 export class TranslationsModule implements IModule {
 
@@ -16,7 +16,7 @@ export class TranslationsModule implements IModule {
 }
 
 export interface ILanguageRetriever {
-    retrieve(): Promise<string>;
+    retrieve(): Observable<string>;
 }
 
 export interface ITranslationsLoader {
@@ -29,7 +29,10 @@ export interface ITranslationsConfig {
 
 export interface ITranslationsManager {
     translate(key: string, fallback?: string): string;
-    load(): Promise<{language: string; translations: Dictionary<string>}>;
+}
+
+export interface ITranslationsRunner {
+    run(): Observable<{ language: string; translations: Dictionary<string> }>;
 }
 
 export class TranslationsLoader implements ITranslationsLoader {
@@ -41,11 +44,15 @@ export class TranslationsLoader implements ITranslationsLoader {
 
 export class TranslationsManager implements ITranslationsManager {
 
-    constructor(languageRetriever: ILanguageRetriever, translationsLoader: ITranslationsLoader);
-
-    load(): Promise<{language: string; translations: Dictionary<string>}>;
+    constructor(translationsRunner: ITranslationsRunner);
 
     translate(key: string, fallback?: string): string;
+}
+
+export class TranslationsRunner implements ITranslationsRunner {
+    constructor(languageRetriever: ILanguageRetriever, translationsLoader: ITranslationsLoader);
+
+    run(): Observable<{ language: string; translations: Dictionary<string> }>;
 }
 
 export class LocalizedApplication extends Application {
