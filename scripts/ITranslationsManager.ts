@@ -1,8 +1,5 @@
-import {Dictionary} from "ninjagoat";
-
 interface ITranslationsManager {
-    translate(key:string, fallback?:string):string;
-    load():Promise<{ language:string; translations:Dictionary<string> }>;
+    translate(key: string, fallback?: string): string;
 }
 
-export default ITranslationsManager
+export default ITranslationsManager;
