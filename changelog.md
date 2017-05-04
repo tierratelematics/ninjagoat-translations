@@ -1,3 +1,7 @@
+# 3.0.0
+
+Allow dynamic change of language
+
 # 2.0.0
 
 Add support for new translations mechanism
