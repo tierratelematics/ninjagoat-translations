@@ -1,3 +1,7 @@
+# 3.1.0
+
+Use react as dependency
+
 # 3.0.0
 
 Allow dynamic change of language
