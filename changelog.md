@@ -1,3 +1,7 @@
+# 3.2.1
+
+Update react-intl version
+
 # 3.2.0
 
 Bump to ninjagoat 2.4.0
