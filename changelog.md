@@ -1,3 +1,7 @@
+# 3.2.0
+
+Bump to ninjagoat 2.4.0
+
 # 3.1.0
 
 Use react as dependency
