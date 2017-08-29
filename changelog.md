@@ -1,3 +1,7 @@
+# 3.2.2
+
+Move types into dev deps
+
 # 3.2.1
 
 Update react-intl version
