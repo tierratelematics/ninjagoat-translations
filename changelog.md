@@ -1,3 +1,7 @@
+# 3.4.0
+
+Bump to ninjagoat 3.x
+
 # 3.3.0
 
 Bump inversify
