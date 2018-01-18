@@ -1,6 +1,6 @@
 {
   "name": "ninjagoat-translations",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "dependencies": {
     "bluebird": "~3.4.0",
     "inversify": "^4.3.0",
