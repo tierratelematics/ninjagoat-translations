@@ -1,3 +1,7 @@
+# 3.5.0
+
+Use localized component also for non root components
+
 # 3.4.0
 
 Bump to ninjagoat 3.x
