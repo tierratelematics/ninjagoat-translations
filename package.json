@@ -30,6 +30,6 @@
   "scripts": {
     "test": "smild test"
   },
-  "main": "dist/ninjagoat-translations.js",
-  "typings": "declarations/ninjagoat-translations.d.ts"
+  "main": "dist",
+  "typings": "dist"
 }

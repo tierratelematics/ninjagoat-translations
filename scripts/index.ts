@@ -1,8 +1,13 @@
 export { default as TranslationsModule } from "./TranslationsModule";
 export { default as TranslationsManager } from "./TranslationsManager";
+export { default as ITranslationsManager } from "./ITranslationsManager";
 export { default as TranslationsRunner } from "./TranslationsRunner";
-export { default as TranslationsLoader } from "./retrievers/TranslationsLoader";
+export { default as ITranslationsRunner } from "./ITranslationsRunner";
+export { default as ITranslationsConfig } from "./ITranslationsConfig";
 export { default as LocalizedApplication } from "./LocalizedApplication";
+export { default as TranslationsLoader } from "./retrievers/TranslationsLoader";
+export { default as ILanguageRetriever } from "./retrievers/ILanguageRetriever";
+export { default as ITranslationsLoader } from "./retrievers/ITranslationsLoader";
 export { FormattedDate } from "react-intl";
 export { FormattedTime } from "react-intl";
 export { FormattedRelative } from "react-intl";
