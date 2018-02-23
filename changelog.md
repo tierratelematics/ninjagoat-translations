@@ -1,3 +1,7 @@
+# 4.0.0
+
+Update React to v16
+
 # 3.5.0
 
 Use localized component also for non root components
