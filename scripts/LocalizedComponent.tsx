@@ -15,7 +15,7 @@ class LocalizedComponent extends React.Component<{}, { language: string; transla
         super(props);
         this.state = {
             translations: null,
-            language: ""
+            language: "en"
         };
     }
 
@@ -28,7 +28,7 @@ class LocalizedComponent extends React.Component<{}, { language: string; transla
             let children = React.Children.toArray(this.props.children);
             let child = children[1] || children[0];
             return (
-                <IntlProvider locale="en" messages={this.state.translations}>
+                <IntlProvider locale="en" messages={this.state.translations} key={this.state.language}>
                     {child}
                 </IntlProvider>
             );
