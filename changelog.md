@@ -1,3 +1,7 @@
+# 4.2.0
+
+Add optional default language
+
 # 4.1.0
 
 Reload provider component on language change
