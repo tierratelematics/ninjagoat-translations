@@ -21,7 +21,21 @@ describe("Given a TranslationsRunner", () => {
 
         translationsLoader.setup(t => t.load(TypeMoq.It.isAnyString())).returns(() => Promise.resolve({ "a": "b" }));
 
-        subject = new TranslationsRunner(languageRetriever, translationsLoader.object);
+        subject = new TranslationsRunner(languageRetriever, translationsLoader.object, {
+            "endpoint": null
+        });
+    });
+
+    context("when a default language is specified", () => {
+        it("should load that language", () => {
+            subject = new TranslationsRunner(languageRetriever, translationsLoader.object, {
+                "endpoint": null,
+                "language": "ja"
+            });
+            subject.run().subscribe();
+
+            translationsLoader.verify(t => t.load("ja"), Times.once());
+        });
     });
 
     context("when the application boots more then once", () => {
