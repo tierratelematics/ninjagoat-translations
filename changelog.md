@@ -1,3 +1,7 @@
+# 4.1.0
+
+Reload provider component on language change
+
 # 4.0.0
 
 Update React to v16
