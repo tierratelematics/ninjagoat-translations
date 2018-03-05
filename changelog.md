@@ -1,3 +1,7 @@
+# 4.2.1
+
+Avoid duplicated lodash versions
+
 # 4.2.0
 
 Add optional default language
