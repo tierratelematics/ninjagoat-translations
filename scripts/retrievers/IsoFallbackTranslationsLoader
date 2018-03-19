@@ -1,3 +1,8 @@
+import { Dictionary } from "ninjagoat";
+import { injectable, inject } from "inversify";
+import { ITranslationsConfig, ITranslationsLoader } from "ninjagoat-translations";
+import { HttpClient, IHttpClient } from "ninjagoat";
+
 export interface ITranslationsConfigFallback extends ITranslationsConfig {
     defaultLanguage: string;
 }
@@ -10,6 +15,7 @@ export class IsoFallbackTranslationsLoader implements ITranslationsLoader {
     }
 
     load(language: string): Promise<Dictionary<string>> {
+        debugger;
         if (!language) {
             language = this.config.defaultLanguage;
         }
@@ -41,4 +47,3 @@ export class IsoFallbackTranslationsLoader implements ITranslationsLoader {
 }
 
 export default IsoFallbackTranslationsLoader;
-
