@@ -1,49 +1,44 @@
-import { Dictionary } from "ninjagoat";
-import { injectable, inject } from "inversify";
-import { ITranslationsConfig, ITranslationsLoader } from "ninjagoat-translations";
-import { HttpClient, IHttpClient } from "ninjagoat";
+export interface ITranslationsConfigFallback extends ITranslationsConfig {
+    defaultLanguage: string;
+}
 
 @injectable()
 export class IsoFallbackTranslationsLoader implements ITranslationsLoader {
     constructor(
         @inject("HttpClient") private httpClient: IHttpClient,
-        @inject("ITranslationsConfig") private config: ITranslationsConfig) {
+        @inject("ITranslationsConfigFallback") private config: ITranslationsConfigFallback) {
     }
 
     load(language: string): Promise<Dictionary<string>> {
-        return new Promise((resolve, reject) => {
+        if (!language) {
+            language = this.config.defaultLanguage;
+        }
+        return <Promise<Dictionary<string>>>
             this.httpClient
                 .get(`${this.config.endpoint}/${language}.json`)
-                .map(response => JSON.parse(response.response))
-                .subscribe(
-                data => {
-                    resolve(data);
-                },
-                ex => {
-                    if (!language) {
-                        return resolve(this.load("en"));
-                    }
+                .toPromise()
+                .then(resp => {
+                    return JSON.parse(resp.response);
+                }, (error: any) => {
 
                     // checks if the requested language contains the country-code i.e. => fr-BE (french-BELGIUM)
                     if (language.indexOf("-") > 0) {
                         // try to fallback to more general language (by removing country-code), i.e. => fr (french)
                         let genLang = language.split("-")[0];
-                        return resolve(this.load(genLang));
+                        return this.load(genLang);
                     }
 
-                    if (language == "en") {
+                    if (language == this.config.defaultLanguage) {
                         // if we already falled back to default language (en), then we must reject the promise...
                         // there is no language available...
-                        reject("no language available");
-                        return;
+                        throw new Error("no language available");
                     }
 
                     // fallback to default language (en)
-                    // en
-                    return resolve(this.load("en"));
+                    return this.load(this.config.defaultLanguage);
                 });
-        });
     }
 }
 
 export default IsoFallbackTranslationsLoader;
+
