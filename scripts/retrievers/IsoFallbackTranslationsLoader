@@ -1,0 +1,44 @@
+import { Dictionary } from "ninjagoat";
+import { injectable, inject } from "inversify";
+import { ITranslationsConfig, ITranslationsLoader } from "ninjagoat-translations";
+import { HttpClient, IHttpClient } from "ninjagoat";
+
+@injectable()
+export class IsoFallbackTranslationsLoader implements ITranslationsLoader {
+    constructor(
+        @inject("HttpClient") private httpClient: IHttpClient,
+        @inject("ITranslationsConfig") private config: ITranslationsConfig) {
+    }
+
+    load(language: string): Promise<Dictionary<string>> {
+        // in case that the requested language is not defined we set it to default language
+        if (!language) {
+            language = this.config.language;
+        }
+
+        return <Promise<Dictionary<string>>>
+            this.httpClient
+                .get(`${this.config.endpoint}/${language}.json`)
+                .toPromise()
+                .then(resp => {
+                    return JSON.parse(resp.response);
+                }, (error: any) => {
+                    if (language == this.config.language) {
+                        // if we already falled back to default language (en) there is no language available...
+                        throw new Error("no language available");
+                    }
+
+                    // checks if the requested language contains the country-code i.e. => fr-BE (french-BELGIUM)
+                    if (language.indexOf("-") > 0) {
+                        // try to fallback to more general language (by removing country-code), i.e. => fr (french)
+                        let genLang = language.split("-")[0];
+                        return this.load(genLang);
+                    }
+
+                    // fallback to default language (en)
+                    return this.load(this.config.language);
+                });
+    }
+}
+
+export default IsoFallbackTranslationsLoader;
