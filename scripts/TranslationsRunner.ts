@@ -1,4 +1,4 @@
-import { Observable, fromPromise } from "rx";
+import { Observable } from "rx";
 import { Dictionary } from "ninjagoat";
 import { inject, injectable } from "inversify";
 import ITranslationsRunner from "./ITranslationsRunner";
