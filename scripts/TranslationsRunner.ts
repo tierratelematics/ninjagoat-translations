@@ -18,12 +18,18 @@ class TranslationsRunner implements ITranslationsRunner {
         this.notifications = this.languageRetriever.retrieve()
             .startWith(config.language)
             .filter(language => !!language)
-            .flatMap(lang => this.translationsLoader.load(lang).then(translations => ({ language: lang, translations: translations })))
+            .flatMap(language => this.load(language))
+            .catch(error => (config.language) ? this.load(config.language) : Observable.throw(error))
             .shareReplay(1);
     }
 
     run(): Observable<TranslationsModel> {
         return this.notifications;
+    }
+
+    private load(language: string): Observable<TranslationsModel>{
+        return Observable.fromPromise(this.translationsLoader.load(language)
+            .then(translations => ({ language: language, translations: translations })));
     }
 }
 
