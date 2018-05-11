@@ -1,3 +1,7 @@
+# 4.3.0
+
+Add fallback default language strategy
+
 # 4.2.1
 
 Avoid duplicated lodash versions
