@@ -1,3 +1,7 @@
+# 4.3.2
+
+Update travis' node version
+
 # 4.3.1
 
 Avoid multiple consecutive loading of the same language
