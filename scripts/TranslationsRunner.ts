@@ -18,6 +18,7 @@ class TranslationsRunner implements ITranslationsRunner {
         this.notifications = this.languageRetriever.retrieve()
             .startWith(config.language)
             .filter(language => !!language)
+            .distinctUntilChanged()
             .flatMap(language => this.load(language))
             .catch(error => (config.language) ? this.load(config.language) : Observable.throw(error))
             .shareReplay(1);
