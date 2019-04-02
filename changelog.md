@@ -1,3 +1,7 @@
+# 4.3.1
+
+Avoid multiple consecutive loading of the same language
+
 # 4.3.0
 
 Add fallback default language strategy
