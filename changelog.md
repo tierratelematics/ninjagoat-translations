@@ -1,6 +1,6 @@
 # 4.3.2
 
-Update travis' node version
+Update travis' node version and key
 
 # 4.3.1
 
