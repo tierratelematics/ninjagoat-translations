@@ -26,6 +26,7 @@
   },
   "peerDependencies": {
     "ninjagoat": "^4.0.0"
+    "typescript": "^3.4.5"
   },
   "scripts": {
     "test": "smild test"
