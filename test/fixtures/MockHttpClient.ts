@@ -1,23 +1,24 @@
 import {IHttpClient, Dictionary, HttpResponse} from "ninjagoat";
-import * as Rx from "rx";
+import {Observable, of} from "rxjs";
 
 class MockHttpClient implements IHttpClient {
-    get(url:string, headers?:Dictionary<string>):Rx.Observable<HttpResponse> {
-        return Rx.Observable.just(new HttpResponse(null, null));
+
+    get(url: string, headers?: Dictionary<string>): Observable<HttpResponse> {
+        return of(new HttpResponse(null, null));
     }
 
-    post(url:string, body:any, headers?:Dictionary<string>):Rx.Observable<HttpResponse> {
+    post(url: string, body: any, headers?: Dictionary<string>): Observable<HttpResponse> {
         return undefined;
     }
 
-    put(url:string, body:any, headers?:Dictionary<string>):Rx.Observable<HttpResponse> {
+    put(url: string, body: any, headers?: Dictionary<string>): Observable<HttpResponse> {
         return undefined;
     }
 
-    delete(url:string, headers?:Dictionary<string>):Rx.Observable<HttpResponse> {
+    delete(url: string, headers?: Dictionary<string>): Observable<HttpResponse> {
         return undefined;
     }
 
 }
 
-export default MockHttpClient
+export default MockHttpClient;

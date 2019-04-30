@@ -1,4 +1,4 @@
-import { Observable } from "rx";
+import { Observable } from "rxjs";
 
 interface ILanguageRetriever {
     retrieve(): Observable<string>;

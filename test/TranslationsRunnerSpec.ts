@@ -1,5 +1,4 @@
 import "reflect-metadata";
-import * as Rx from "rx";
 import { Times } from "typemoq";
 import * as TypeMoq from "typemoq";
 import expect = require("expect.js");

@@ -3,13 +3,13 @@ import ITranslationsRunner from "./ITranslationsRunner";
 import { Dictionary } from "ninjagoat";
 import { IntlProvider } from "react-intl";
 import { lazyInject } from "ninjagoat";
-import { Disposable } from "rx";
+import {Subscription} from "rxjs";
 
 class LocalizedComponent extends React.Component<{}, { language: string; translations: Dictionary<string> }> {
 
     @lazyInject("ITranslationsRunner")
     private translationsRunner: ITranslationsRunner;
-    private subscription: Disposable;
+    private subscription: Subscription;
 
     constructor(props: {}) {
         super(props);
@@ -38,7 +38,7 @@ class LocalizedComponent extends React.Component<{}, { language: string; transla
 
     componentWillUnmount() {
         if (this.subscription) {
-            this.subscription.dispose();
+            this.subscription.unsubscribe();
             this.subscription = null;
         }
     }
