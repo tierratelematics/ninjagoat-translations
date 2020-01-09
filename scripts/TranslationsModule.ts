@@ -10,11 +10,14 @@ import ITranslationsManager from "./ITranslationsManager";
 import TranslationsManager from "./TranslationsManager";
 import ITranslationsRunner from "./ITranslationsRunner";
 import TranslationsRunner from "./TranslationsRunner";
+import ITranslationsUrlBuilder from "./ITranslationsUrlBuilder";
+import TranslationsUrlBuilder from "./TranslationsUrlBuilder";
 
 class TranslationsModule implements IModule {
 
     modules = (container: interfaces.Container) => {
         container.bind<ILanguageRetriever>("ILanguageRetriever").to(BrowserLanguageRetriever).inSingletonScope();
+        container.bind<ITranslationsUrlBuilder>("ITranslationsUrlBuilder").to(TranslationsUrlBuilder).inSingletonScope();
         container.bind<ITranslationsLoader>("ITranslationsLoader").to(TranslationsLoader).inSingletonScope();
         container.bind<ITranslationsManager>("ITranslationsManager").to(TranslationsManager).inSingletonScope();
         container.bind<ITranslationsRunner>("ITranslationsRunner").to(TranslationsRunner).inSingletonScope();
