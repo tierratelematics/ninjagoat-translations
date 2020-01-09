@@ -9,5 +9,7 @@ export { default as LocalizedComponent } from "./LocalizedComponent";
 export { default as TranslationsLoader } from "./retrievers/TranslationsLoader";
 export { default as ILanguageRetriever } from "./retrievers/ILanguageRetriever";
 export { default as ITranslationsLoader } from "./retrievers/ITranslationsLoader";
+export { default as ITranslationsUrlBuilder } from "./ITranslationsUrlBuilder";
+export { default as TranslationsUrlBuilder } from "./TranslationsUrlBuilder";
 export { FormattedDate, FormattedTime, FormattedRelative, FormattedNumber, 
     FormattedPlural, FormattedMessage, FormattedHTMLMessage, addLocaleData } from "react-intl";
