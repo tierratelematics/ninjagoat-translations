@@ -1,3 +1,7 @@
+# 4.4.0 
+
+Refactor translations loader introducing translations url builder
+
 # 4.3.2
 
 Update travis' node version and key
