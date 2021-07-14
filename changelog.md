@@ -1,3 +1,7 @@
+# 5.0.0-rc.0
+
+Update to rxjs 6
+
 # 4.4.0 
 
 Refactor translations loader introducing translations url builder
